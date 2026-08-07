@@ -25,37 +25,172 @@ User Code:
 Instructions:
 
 If feature is "review":
-- Review the code professionally.
-- Give a score out of 10.
-- Mention strengths.
-- Mention weaknesses.
-- Suggest improvements.
+
+Return the response in this format:
+
+# ⭐ Code Review
+
+## 📊 Overall Score
+- Score: X/10
+
+## ✅ Strengths
+- Point 1
+- Point 2
+- Point 3
+
+## ❌ Weaknesses
+- Point 1
+- Point 2
+- Point 3
+
+## 💡 Suggested Improvements
+- Improvement 1
+- Improvement 2
+- Improvement 3
+
+## 🚀 Best Practices
+- Practice 1
+- Practice 2
+
+## 📌 Final Verdict
+Write 2-3 professional sentences summarizing the quality of the code.
+
+Always use markdown headings and bullet points.
 
 If feature is "explain":
-- Explain the code step-by-step.
+
+Return the explanation using markdown.
+
+# 📖 Code Explanation
+
+## 🎯 Purpose
+Explain what this program does.
+
+## 🔄 Execution Flow
+
+Explain step-by-step.
+
+Step 1
+...
+
+Step 2
+...
+
+Step 3
+...
+
+## ⚙ Key Concepts Used
+
+- Variables
+- Loops
+- Arrays
+- Functions
+
+## 📌 Summary
+
+Give a concise summary.
 
 If feature is "tests":
-- Generate unit test cases.
+
+Return markdown.
+
+# 🧪 Test Cases
+
+## ✅ Normal Cases
+
+| Input | Expected Output |
+|-------|-----------------|
+
+## ⚠ Edge Cases
+
+| Input | Expected Output |
+|-------|-----------------|
+
+## ❌ Invalid Cases
+
+| Input | Expected Output |
+|-------|-----------------|
+
+## 🎯 Unit Tests
+
+Return unit tests inside a markdown code block.
 
 If feature is "complexity":
-- Tell time complexity.
-- Tell space complexity.
-- Explain why.
+
+Return in markdown.
+
+# ⚡ Complexity Analysis
+
+## ⏱ Time Complexity
+
+State complexity.
+
+Explain why.
+
+## 💾 Space Complexity
+
+State complexity.
+
+Explain why.
+
+## 📈 Can it be Improved?
+
+Yes/No
+
+Explain.
 
 If feature is "optimize":
-- Optimize the code.
-- Return improved code.
-- Explain changes.
+
+Return markdown.
+
+# 🚀 Code Optimization
+
+## 🔍 Problems Found
+
+- Problem 1
+- Problem 2
+
+## ✨ Optimized Code
+
+Provide improved code inside a markdown code block.
+
+## 📈 Improvements
+
+- Faster
+- Cleaner
+- More readable
+
+## 🎯 Why this is Better
+
+Explain.
 
 If feature is "bugs":
-- Analyze the code for logical bugs.
-- Find runtime errors.
-- Find syntax mistakes (if any).
-- Find memory leaks (if applicable).
-- Find edge cases that may fail.
-- Mention severity (Low, Medium, High).
-- Suggest fixes.
-- Return corrected code if needed.
+
+Return markdown.
+
+# 🐞 Bug Analysis
+
+## 🚨 Issues Found
+
+For each issue provide:
+
+- Bug
+- Severity
+- Explanation
+
+## ⚠ Edge Cases
+
+- Case 1
+- Case 2
+
+## 🔧 Suggested Fixes
+
+- Fix 1
+- Fix 2
+
+## ✅ Corrected Code
+
+Return corrected code inside a markdown code block.
 
 
 If feature is "interview":
