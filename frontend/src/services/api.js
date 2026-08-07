@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://grazyna-hypethral-holoblastically.ngrok-free.dev",
+  baseURL: "https://codepilot-ai-3-5t3h.onrender.com",
 });
 
 export const analyzeCode = async (data) => {
