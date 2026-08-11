@@ -4,6 +4,7 @@ import {
   TestTube,
   ChartColumn,
   Rocket,
+  History,
 } from "lucide-react";
 import { Bug } from "lucide-react";
 import { ShieldCheck } from "lucide-react";
@@ -80,6 +81,12 @@ function Features() {
   title="Bug Finder"
   description="Detect logical bugs, runtime issues, memory leaks and edge cases."
   path="/bugs"
+/>
+<FeatureCard
+  icon={History}
+  title="Analysis History"
+  description="Review your previous code analyses and AI insights."
+  path="/history"
 />
 
         </div>
