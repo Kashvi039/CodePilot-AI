@@ -8,3 +8,8 @@ export const analyzeCode = async (data) => {
   const response = await API.post("/analyze", data);
   return response.data;
 };
+
+export const getHistory = async () => {
+  const response = await API.get("/history");
+  return response.data;
+};

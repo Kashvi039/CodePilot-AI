@@ -9,6 +9,8 @@ import Optimize from "./pages/Optimize";
 import BugFinder from "./pages/BugFinder";
 import SecurityReview from "./pages/SecurityReview";
 import InterviewMode from "./pages/InterviewMode";
+import History from "./pages/History";
+
 
 function App() {
   return (
@@ -22,10 +24,9 @@ function App() {
         <Route path="/optimize" element={<Optimize />} />
         <Route path="/bugs" element={<BugFinder />} />
         <Route path="/security" element={<SecurityReview />} />
-        <Route
-  path="/interview"
-  element={<InterviewMode />}
-/>
+        <Route path="/interview" element={<InterviewMode />} />
+
+        <Route path="/history" element={<History />} />
       </Routes>
     </BrowserRouter>
   );

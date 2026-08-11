@@ -2,6 +2,8 @@ from fastapi import APIRouter, HTTPException
 
 from models.request_models import AnalyzeRequest
 from services.llm import ask_llm
+from database.database import SessionLocal
+from models.analysis import Analysis
 
 router = APIRouter()
 
@@ -13,7 +15,7 @@ def analyze(request: AnalyzeRequest):
         prompt = f"""
 You are an expert software engineer and coding interviewer.
 
-Feature Requested:
+Feature Requested:.
 {request.feature}
 
 Programming Language:
@@ -384,6 +386,23 @@ Accuracy is more important than encouragement.
 
         response = ask_llm(prompt)
 
+        db = SessionLocal()
+
+        try:
+            analysis = Analysis(
+                feature=request.feature,
+                language=request.language,
+                code=request.code,
+                response=response
+            )
+
+            db.add(analysis)
+            db.commit()
+            db.refresh(analysis)
+
+        finally:
+            db.close()
+
         return {
             "success": True,
             "feature": request.feature,
@@ -392,3 +411,37 @@ Accuracy is more important than encouragement.
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@router.get("/history")
+def get_history():
+    db = SessionLocal()
+
+    try:
+        analyses = (
+            db.query(Analysis)
+            .order_by(Analysis.created_at.desc())
+            .all()
+        )
+
+        history = []
+
+        for analysis in analyses:
+            history.append({
+                "id": analysis.id,
+                "feature": analysis.feature,
+                "language": analysis.language,
+                "code": analysis.code,
+                "response": analysis.response,
+                "created_at": analysis.created_at
+            })
+
+        return {
+            "success": True,
+            "history": history
+        }
+
+    finally:
+        db.close()
+
