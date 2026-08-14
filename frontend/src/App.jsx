@@ -10,6 +10,8 @@ import BugFinder from "./pages/BugFinder";
 import SecurityReview from "./pages/SecurityReview";
 import InterviewMode from "./pages/InterviewMode";
 import History from "./pages/History";
+import AnalysisDetails from "./pages/AnalysisDetails";
+
 
 
 function App() {
@@ -27,6 +29,14 @@ function App() {
         <Route path="/interview" element={<InterviewMode />} />
 
         <Route path="/history" element={<History />} />
+        <Route
+  path="/history/:id"
+  element={<AnalysisDetails />}
+/>
+<Route
+  path="/history/:id"
+  element={<AnalysisDetails />}
+/>
       </Routes>
     </BrowserRouter>
   );

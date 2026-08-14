@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getHistory } from "../services/api";
 
 function History() {
+  const navigate = useNavigate();
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -222,18 +224,16 @@ function History() {
                 {/* Footer */}
                 <div className="border-t border-slate-800 px-6 py-4">
 
-                  <button
-                    className="w-full flex items-center justify-between text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
-                    onClick={() =>
-                      console.log("Selected analysis:", item)
-                    }
-                  >
-                    <span>View Full Analysis</span>
+                  <button 
+  className="w-full flex items-center justify-between text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors" 
+  onClick={() => navigate(`/history/${item.id}`)}
+>
+  <span>View Full Analysis</span> 
 
-                    <span className="text-lg transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </button>
+  <span className="text-lg transition-transform group-hover:translate-x-1"> 
+    → 
+  </span> 
+</button>
 
                 </div>
 

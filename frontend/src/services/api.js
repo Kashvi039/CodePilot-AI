@@ -11,11 +11,11 @@ export const analyzeCode = async (data) => {
 };
 
 export const getHistory = async () => {
-  console.log("Calling history API...");
-
   const response = await API.get("/history");
+  return response.data;
+};
 
-  console.log("History API response:", response.data);
-
+export const getAnalysis = async (id) => {
+  const response = await API.get(`/history/${id}`);
   return response.data;
 };

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+
 function FeatureCard({ icon: Icon, title, description, path }) {
   return (
     <Link to={path}>
