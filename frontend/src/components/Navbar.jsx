@@ -55,6 +55,12 @@ function Navbar() {
           >
             Complexity
           </Link>
+          <Link
+  to="/dashboard"
+  className="hover:text-white transition"
+>
+  Dashboard
+</Link>
 
         </div>
 

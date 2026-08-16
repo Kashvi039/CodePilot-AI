@@ -5,6 +5,7 @@ import {
   ChartColumn,
   Rocket,
   History,
+  BarChart3,
 } from "lucide-react";
 import { Bug } from "lucide-react";
 import { ShieldCheck } from "lucide-react";
@@ -81,6 +82,12 @@ function Features() {
   title="Bug Finder"
   description="Detect logical bugs, runtime issues, memory leaks and edge cases."
   path="/bugs"
+/>
+<FeatureCard
+  icon={BarChart3}
+  title="Developer Dashboard"
+  description="Track your coding activity, analysis history and AI insights."
+  path="/dashboard"
 />
 <FeatureCard
   icon={History}
