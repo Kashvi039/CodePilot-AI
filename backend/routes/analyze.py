@@ -4,6 +4,7 @@ from models.request_models import AnalyzeRequest
 from services.llm import ask_llm
 from database.database import SessionLocal
 from models.analysis import Analysis
+from sqlalchemy import func
 
 router = APIRouter()
 
@@ -474,6 +475,39 @@ def get_analysis(analysis_id: int):
                 "response": analysis.response,
                 "created_at": analysis.created_at
             }
+        }
+
+    finally:
+        db.close()
+@router.get("/statistics")
+def get_statistics():
+
+    db = SessionLocal()
+
+    try:
+
+        # Total number of analyses
+        total_analyses = db.query(Analysis).count()
+
+        # Count analyses grouped by feature
+        feature_counts = (
+            db.query(
+                Analysis.feature,
+                func.count(Analysis.id)
+            )
+            .group_by(Analysis.feature)
+            .all()
+        )
+
+        by_feature = {
+            feature: count
+            for feature, count in feature_counts
+        }
+
+        return {
+            "success": True,
+            "total_analyses": total_analyses,
+            "by_feature": by_feature
         }
 
     finally:
