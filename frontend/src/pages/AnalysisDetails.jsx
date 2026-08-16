@@ -14,6 +14,9 @@ function AnalysisDetails() {
     const fetchAnalysis = async () => {
       try {
         const data = await getAnalysis(id);
+
+        console.log("Analysis details:", data);
+
         setAnalysis(data.analysis);
       } catch (error) {
         console.error("Analysis error:", error);
@@ -40,13 +43,20 @@ function AnalysisDetails() {
     return (
       <div className="min-h-screen bg-[#020617] text-white flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">
+          <h2 className="text-2xl font-bold text-red-400">
             Failed to load analysis
           </h2>
 
-          <p className="text-slate-400">
+          <p className="text-slate-400 mt-2">
             {error}
           </p>
+
+          <button
+            onClick={() => navigate("/history")}
+            className="mt-6 px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500"
+          >
+            Back to History
+          </button>
         </div>
       </div>
     );
@@ -64,7 +74,7 @@ function AnalysisDetails() {
         {/* Back button */}
         <button
           onClick={() => navigate("/history")}
-          className="text-slate-400 hover:text-white mb-8 transition"
+          className="text-blue-400 hover:text-blue-300 mb-8"
         >
           ← Back to History
         </button>
@@ -72,82 +82,64 @@ function AnalysisDetails() {
         {/* Header */}
         <div className="mb-10">
 
-          <p className="text-blue-400 text-sm uppercase tracking-widest mb-3">
-            CodePilot AI
+          <p className="text-sm text-blue-400 font-semibold tracking-wider">
+            CODEPILOT AI
           </p>
 
-          <h1 className="text-4xl font-bold">
-            {formatFeature(analysis.feature)}
+          <h1 className="text-4xl font-bold mt-2">
+            {analysis.feature} Analysis
           </h1>
 
-          <div className="flex gap-4 text-slate-400 mt-3">
+          <div className="flex gap-4 mt-4 text-sm text-slate-400">
             <span>{analysis.language}</span>
             <span>•</span>
-            <span>{formatDate(analysis.created_at)}</span>
+            <span>Analysis #{analysis.id}</span>
           </div>
 
         </div>
 
         {/* Code */}
-        <section className="mb-10">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden mb-8">
 
-          <h2 className="text-xl font-semibold mb-4">
-            💻 Submitted Code
-          </h2>
+          <div className="px-6 py-4 border-b border-slate-800 flex justify-between">
+            <span className="font-semibold">
+              Source Code
+            </span>
 
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden">
-
-            <div className="px-5 py-3 border-b border-slate-800 text-sm text-blue-400">
+            <span className="text-sm text-slate-400">
               {analysis.language}
-            </div>
-
-            <pre className="p-6 overflow-x-auto text-sm leading-7 text-slate-300 font-mono">
-              {analysis.code}
-            </pre>
-
+            </span>
           </div>
 
-        </section>
+          <pre className="p-6 overflow-x-auto text-sm text-slate-300">
+            <code>{analysis.code}</code>
+          </pre>
 
-        {/* AI Response */}
-        <section>
+        </div>
 
-          <h2 className="text-xl font-semibold mb-4">
-            🤖 AI Analysis
-          </h2>
+        {/* AI Analysis */}
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
 
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+          <div className="px-6 py-4 border-b border-slate-800">
+            <span className="font-semibold">
+              ✨ AI Analysis
+            </span>
+          </div>
 
-            <div className="text-slate-300 leading-7 whitespace-pre-wrap">
+          <div className="p-6">
+
+            <div className="whitespace-pre-wrap text-slate-300 leading-7">
               {analysis.response}
             </div>
 
           </div>
 
-        </section>
+        </div>
 
       </div>
 
     </div>
   );
-}
-
-function formatFeature(feature) {
-  if (!feature) return "Analysis";
-
-  return feature.charAt(0).toUpperCase() + feature.slice(1);
-}
-
-function formatDate(date) {
-  if (!date) return "Unknown date";
-
-  return new Date(date).toLocaleString("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
 }
 
 export default AnalysisDetails;

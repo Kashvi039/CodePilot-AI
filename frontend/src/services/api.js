@@ -19,3 +19,7 @@ export const getAnalysis = async (id) => {
   const response = await API.get(`/history/${id}`);
   return response.data;
 };
+export const getStatistics = async () => {
+  const response = await API.get("/statistics");
+  return response.data;
+};

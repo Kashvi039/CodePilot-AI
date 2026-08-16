@@ -11,6 +11,7 @@ import SecurityReview from "./pages/SecurityReview";
 import InterviewMode from "./pages/InterviewMode";
 import History from "./pages/History";
 import AnalysisDetails from "./pages/AnalysisDetails";
+import Dashboard from "./pages/Dashboard";
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/review" element={<Review />} />
         <Route path="/explain" element={<Explain />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tests" element={<Tests />} />
         <Route path="/complexity" element={<Complexity />} />
         <Route path="/optimize" element={<Optimize />} />
