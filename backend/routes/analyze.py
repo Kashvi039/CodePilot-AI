@@ -445,3 +445,37 @@ def get_history():
     finally:
         db.close()
 
+
+@router.get("/history/{analysis_id}")
+def get_analysis(analysis_id: int):
+
+    db = SessionLocal()
+
+    try:
+        analysis = (
+            db.query(Analysis)
+            .filter(Analysis.id == analysis_id)
+            .first()
+        )
+
+        if not analysis:
+            raise HTTPException(
+                status_code=404,
+                detail="Analysis not found"
+            )
+
+        return {
+            "success": True,
+            "analysis": {
+                "id": analysis.id,
+                "feature": analysis.feature,
+                "language": analysis.language,
+                "code": analysis.code,
+                "response": analysis.response,
+                "created_at": analysis.created_at
+            }
+        }
+
+    finally:
+        db.close()
+
