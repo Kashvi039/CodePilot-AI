@@ -1,7 +1,10 @@
+
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://codepilot-ai-3-5t3h.onrender.com",
+  baseURL: import.meta.env.DEV
+    ? "http://127.0.0.1:8000"
+    : "https://codepilot-ai-3-5t3h.onrender.com",
   timeout: 60000,
 });
 
@@ -19,6 +22,7 @@ export const getAnalysis = async (id) => {
   const response = await API.get(`/history/${id}`);
   return response.data;
 };
+
 export const getStatistics = async () => {
   const response = await API.get("/statistics");
   return response.data;
