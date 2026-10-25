@@ -18,7 +18,7 @@ def ask_llm(prompt: str):
                 "content": prompt,
             }
         ],
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         temperature=0.2,
     )
 
